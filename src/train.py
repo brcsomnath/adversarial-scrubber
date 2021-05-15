@@ -393,7 +393,6 @@ def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, o
 
         # Updating Scrubber
         optimS.zero_grad()
-        
         netS.zero_grad()
         D_task.zero_grad()
         bert_model.zero_grad()
