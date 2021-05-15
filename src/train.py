@@ -400,15 +400,15 @@ def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, o
         # Fake data treated as real.
         bert_output = bert_model(real_data)[1]
         fake_data = netS(bert_output)
+
+        task_out = D_task(fake_data)
+        task_loss =  ce(task_out, label)
+        task_loss_ = task_loss.item()
         
         probs_fake = D_bias(fake_data)
         delta_loss = args.lambda_2 * delta(probs_fake, bias, device)
         
         entropy_loss = args.lambda_1 * entropy(probs_fake)
-        
-        task_out = D_task(fake_data)
-        task_loss =  ce(task_out, label)
-        
         
         S_loss = task_loss 
 
@@ -424,7 +424,7 @@ def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, o
         
         train_dataloader.set_description(
             f'D Bias Loss = {(loss_fake.item()):.6f} \
-            D Task Loss = {(task_loss.item()):.6f}\
+            D Task Loss = {(task_loss_):.6f}\
             G Dirac Loss = {(delta_loss.item()):.6f} \
             Entropy loss = {( entropy_loss.item()):.6f}')
 
