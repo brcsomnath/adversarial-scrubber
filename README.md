@@ -12,7 +12,8 @@ The Biographies corpus was retrieved from this [project](https://github.com/Micr
 
 Run the following command to prepare the data in the format required in our project.
 ```
-python src/prepare_data.py --dataset wizard  --save_path data/wizard/ 
+cd src/
+python prepare_data.py --dataset wizard  --save_path data/wizard/ 
 ```
 
 ## Running AdS
@@ -20,7 +21,8 @@ python src/prepare_data.py --dataset wizard  --save_path data/wizard/
 Execute the following commands to run our AdS.
 
 ```
-python src/train.py \
+cd src/
+python train.py \
 --dataset wizard \
 --MODEL bert-base-uncased \
 --max_len 32 \
@@ -37,7 +39,8 @@ python src/train.py \
 Evaluate the representations formed by the model by running the following command
 
 ```
-python src/evaluate.py \
+cd src/
+python evaluate.py \
     --train_path results/wizard/train-gen.pkl \
     --test_path results/wizard/test-gen.pkl
 ```
