@@ -7,7 +7,7 @@ This repository presents the implementation of EMNLP 2021 submission: <br>
 python 3.8
 ```
 # create a clean conda env
-conda create -n adv-scrubber python==2.8 anaconda
+conda create -n adv-scrubber python==3.8 anaconda
 source activate adv-scrubber
 
 pip install -r requirements.txt
@@ -15,7 +15,7 @@ pip install -r requirements.txt
 
 ## Preparing the data
 
-The dialogue datasets from the paper [Multi-dimensional gender bias classification](https://arxiv.org/pdf/2005.00614.pdf). We use the huggingface library to retrieve the datasets and use the same split.
+The dialogue datasets from the paper [Multi-dimensional gender bias classification](https://arxiv.org/pdf/2005.00614.pdf). We use the huggingface library (code present in src/prepare_data.py) to retrieve the datasets and use the same split.
 
 DIAL and PAN16 datasets were generated using this open-source [project](https://github.com/yanaiela/demog-text-removal).
 
