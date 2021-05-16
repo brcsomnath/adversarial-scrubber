@@ -1,6 +1,17 @@
 # Adversarial Scrubber (AdS)
 
-This repository presents the implementation of EMNLP 2021 submission.
+This repository presents the implementation of EMNLP 2021 submission: <br>
+"Adversarial Scrubbing of Demographic Information for Text Classification"
+
+## Pre-requisities
+python 3.8
+```
+# create a clean conda env
+conda create -n adv-scrubber python==2.8 anaconda
+source activate adv-scrubber
+
+pip install -r requirements.txt
+```
 
 ## Preparing the data
 
@@ -10,6 +21,7 @@ DIAL and PAN16 datasets were generated using this open-source [project](https://
 
 The Biographies corpus was retrieved from this [project](https://github.com/Microsoft/biosbias).
 
+Demo for the project is provided for Wizard dataset. <br>
 Run the following command to prepare the data in the format required in our project.
 ```
 cd src/
