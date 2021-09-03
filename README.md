@@ -1,13 +1,15 @@
 # Adversarial Scrubber (AdS)
 
-This repository presents the implementation of EMNLP 2021 submission: <br>
-"Adversarial Scrubbing of Demographic Information for Text Classification"
+This repository presents the implementation of EMNLP 2021 paper: "__Adversarial Scrubbing of Demographic Information for Text Classification"__
+
+[Somnath Basu Roy Chowdhury](https://www.cs.unc.edu/~somnath/), [Sayan Ghosh](https://sgdgp.github.io/), [Yiyuan Li](https://nativeatom.github.io/), [Junier Oliva](https://cs.unc.edu/person/junier-oliva/), [Shashank Srivastava](https://www.ssriva.com/) and [Snigdha Chaturvedi](https://sites.google.com/site/snigdhac/).
+
 
 ## Pre-requisities
 python 3.8
 ```
 # create a clean conda env
-conda create -n adv-scrubber python==3.8 anaconda
+conda create -n adv-scrubber python==3.8 
 source activate adv-scrubber
 
 pip install -r requirements.txt
@@ -20,6 +22,8 @@ The dialogue datasets from the paper [Multi-dimensional gender bias classificati
 DIAL and PAN16 datasets were generated using this open-source [project](https://github.com/yanaiela/demog-text-removal).
 
 The Biographies corpus was retrieved from this [project](https://github.com/Microsoft/biosbias).
+
+Please cite the respective paper if you're using the any of the above data. 
 
 Demo for the project is provided for Wizard dataset. <br>
 Run the following command to prepare the data in the format required in our project.
@@ -55,4 +59,8 @@ cd src/
 python evaluate.py \
     --train_path results/wizard/train-gen.pkl \
     --test_path results/wizard/test-gen.pkl
+```
+
+## Citation
+```
 ```

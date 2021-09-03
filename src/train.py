@@ -170,16 +170,8 @@ def get_dataset(dataset):
     test: list of test instances
     """
 
-    if dataset == "funpedia":
-        FUNPEDIA_PATH = "data/funpedia_bert_embeddings/"
-        Y_LABELS = {'Positive': 0, 'Negative': 1, 'Neutral': 2}
-        Z_LABELS = {'male': 0, 'female': 1, 'gender-neutral': 2}
 
-        train = load_funpedia(FUNPEDIA_PATH + "train.json")
-        dev = load_funpedia(FUNPEDIA_PATH + "val.json")
-        test = load_funpedia(FUNPEDIA_PATH + "test.json")
-
-    elif dataset == "wizard":
+    if dataset == "wizard":
         WIZARD_PATH = "../../data/wizard/"
         Y_LABELS = {'Positive': 0, 'Negative': 1, 'Neutral': 2}
         Z_LABELS = {'male': 0, 'female': 1}
@@ -214,6 +206,15 @@ def get_dataset(dataset):
         train = load_content(load_dump(OPENSUB_PATH + "train.pkl"))
         dev = load_content(load_dump(OPENSUB_PATH + "dev.pkl"))
         test = load_content(load_dump(OPENSUB_PATH + "test.pkl"))
+
+    elif dataset == "funpedia":
+        FUNPEDIA_PATH = "data/funpedia_bert_embeddings/"
+        Y_LABELS = {'Positive': 0, 'Negative': 1, 'Neutral': 2}
+        Z_LABELS = {'male': 0, 'female': 1, 'gender-neutral': 2}
+
+        train = load_funpedia(FUNPEDIA_PATH + "train.json")
+        dev = load_funpedia(FUNPEDIA_PATH + "val.json")
+        test = load_funpedia(FUNPEDIA_PATH + "test.json")
 
     elif dataset == "dial":
         DIAL_PATH = "data/twitter-race/sentiment-race/"
@@ -340,6 +341,9 @@ ce = nn.CrossEntropyLoss()
 entropy = EntropyLoss()
 
 def initialize_models(args, Y_LABELS, Z_LABELS, device):
+    '''
+    Initialize all modules with default parameters
+    '''
     bert_model = BertModel.from_pretrained(args.MODEL)
     bert_model.to(device)
 
@@ -358,6 +362,10 @@ def initialize_models(args, Y_LABELS, Z_LABELS, device):
 
 
 def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, optimS, optimD_bias, device):
+    '''
+    Training Adversarial-Scrubber model
+    '''
+
     bert_model.train()
     D_bias.train()
     D_task.train()
@@ -391,7 +399,6 @@ def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, o
         D_loss.backward()
         optimD_bias.step()
 
-        # Updating Scrubber
         optimS.zero_grad()
         netS.zero_grad()
         D_task.zero_grad()
@@ -410,6 +417,7 @@ def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, o
         
         entropy_loss = args.lambda_1 * entropy(probs_fake)
         
+        # Scrubber Loss
         S_loss = task_loss 
 
         if args.entropy_on:
@@ -418,7 +426,7 @@ def train_AdS(args, epoch, train_dataloader, bert_model, netS, D_bias, D_task, o
         if args.delta_on:
             S_loss += delta_loss
 
-        
+        # Updating Scrubber
         S_loss.backward()
         optimS.step()
         
@@ -520,6 +528,7 @@ def main():
     # Initialize models
     bert_model, netS, D_bias, D_task = initialize_models(args, Y_LABELS, Z_LABELS, device)
 
+    # Task setup, and arguments
     print(Y_LABELS, Z_LABELS)
     print(args)
 
