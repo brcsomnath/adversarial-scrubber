@@ -110,6 +110,22 @@ def load_wizard():
     
     return train, dev, test
 
+### FUNPEDIA
+def load_funpedia_(dataset):
+    data = []
+    for d in dataset:
+        data.append((d['text'], get_sentiment(d['text']), d['gender']))
+    return data
+        
+def load_funpedia():
+    funpedia = load_dataset("md_gender_bias", "funpedia")
+    
+    train = load_funpedia_(funpedia['train'])
+    dev = load_funpedia_(funpedia['validation'])
+    test = load_funpedia_(funpedia['test'])
+    
+    return train, dev, test
+
 ### CONVAI2
 def load_convai_(dataset):
     data = []
@@ -206,6 +222,9 @@ def get_dataset(args):
     
     if args.dataset == "wizard":
         train, dev, test = load_wizard()
+
+    if args.dataset == "funpedia":
+        train, dev, test = load_funpedia()
     
     elif args.dataset == "convai2":
         train, dev, test = load_convai()

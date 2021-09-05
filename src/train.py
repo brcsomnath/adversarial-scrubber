@@ -208,13 +208,13 @@ def get_dataset(dataset):
         test = load_content(load_dump(OPENSUB_PATH + "test.pkl"))
 
     elif dataset == "funpedia":
-        FUNPEDIA_PATH = "data/funpedia_bert_embeddings/"
+        FUNPEDIA_PATH = "data/funpedia/"
         Y_LABELS = {'Positive': 0, 'Negative': 1, 'Neutral': 2}
         Z_LABELS = {'male': 0, 'female': 1, 'gender-neutral': 2}
 
-        train = load_funpedia(FUNPEDIA_PATH + "train.json")
-        dev = load_funpedia(FUNPEDIA_PATH + "val.json")
-        test = load_funpedia(FUNPEDIA_PATH + "test.json")
+        train = load_content(load_dump(FUNPEDIA_PATH + "train.pkl"))
+        dev = load_content(load_dump(FUNPEDIA_PATH + "dev.pkl"))
+        test = load_content(load_dump(FUNPEDIA_PATH + "test.pkl"))
 
     elif dataset == "dial":
         DIAL_PATH = "data/twitter-race/sentiment-race/"
@@ -484,6 +484,8 @@ def eval_AdS(epoch, test_loader, bert_model, netS, D_bias, D_task, device):
     print(" Bias Evaluation Acc: {:.6f}".format(bias_total_acc / len(test_loader)))
 
 def save_models(args, bert_model, netS, D_bias, D_task):
+    if not os.path.exists(args.model_save_path):
+        os.makedirs(args.model_save_path)
     torch.save(bert_model, args.model_save_path + "bert-model-e+d.pb")
     torch.save(netS, args.model_save_path + "gen-model-e+d.pb")
     torch.save(D_bias, args.model_save_path + "disc-bias-e+d.pb")

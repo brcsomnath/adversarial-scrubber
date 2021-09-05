@@ -46,9 +46,10 @@ python train.py \
 --device cuda:0 \
 --model_save_path model/wizard/ \
 --results_save_path results/wizard \
+--save_path data/wizard \
 --epochs 3 \
 --lambda_1 10 \
---lambda_2 1
+--lambda_2 0
 ```
 
 ## Evaluating AdS
