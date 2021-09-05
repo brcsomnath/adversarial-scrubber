@@ -263,9 +263,9 @@ def save_dataset(args, encoded_data_train, encoded_data_dev, encoded_data_test):
     if not os.path.exists(args.save_path):
         os.makedirs(args.save_path)
 
-    dump_data(args.save_path + 'train.pkl', encoded_data_train)
-    dump_data(args.save_path + 'dev.pkl', encoded_data_dev)
-    dump_data(args.save_path + 'test.pkl', encoded_data_test)
+    dump_data(os.path.join(args.save_path, 'train.pkl'), encoded_data_train)
+    dump_data(os.path.join(args.save_path, 'dev.pkl'), encoded_data_dev)
+    dump_data(os.path.join(args.save_path, 'test.pkl'), encoded_data_test)
 
 def main():
     args = get_config().parse_args()

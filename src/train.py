@@ -487,10 +487,10 @@ def save_models(args, bert_model, netS, D_bias, D_task):
     if not os.path.exists(args.model_save_path):
         os.makedirs(args.model_save_path)
 
-    torch.save(bert_model, args.model_save_path + "bert-model-e+d.pb")
-    torch.save(netS, args.model_save_path + "gen-model-e+d.pb")
-    torch.save(D_bias, args.model_save_path + "disc-bias-e+d.pb")
-    torch.save(D_task, args.model_save_path + "disc-task-e+d.pb")
+    torch.save(bert_model, os.path.join(args.model_save_path, "bert-model-e+d.pb"))
+    torch.save(netS, os.path.join(args.model_save_path, "gen-model-e+d.pb"))
+    torch.save(D_bias, os.path.join(args.model_save_path, "disc-bias-e+d.pb"))
+    torch.save(D_task, os.path.join(args.model_save_path, "disc-task-e+d.pb"))
 
 def generate_purged_dataset(dataset_loader, bert_model, netS, device):
     dataset = []
