@@ -45,7 +45,7 @@ python train.py \
 --embedding_size 768 \
 --device cuda:0 \
 --model_save_path model/wizard/ \
---results_save_path results/wizard \
+--results_save_path results/wizard/ \
 --save_path data/wizard \
 --epochs 3 \
 --lambda_1 10 \

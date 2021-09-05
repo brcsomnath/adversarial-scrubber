@@ -486,6 +486,7 @@ def eval_AdS(epoch, test_loader, bert_model, netS, D_bias, D_task, device):
 def save_models(args, bert_model, netS, D_bias, D_task):
     if not os.path.exists(args.model_save_path):
         os.makedirs(args.model_save_path)
+
     torch.save(bert_model, args.model_save_path + "bert-model-e+d.pb")
     torch.save(netS, args.model_save_path + "gen-model-e+d.pb")
     torch.save(D_bias, args.model_save_path + "disc-bias-e+d.pb")
@@ -507,11 +508,14 @@ def generate_purged_dataset(dataset_loader, bert_model, netS, device):
     return dataset
 
 def save_representations(args, bert_model, netS, train_dataloader, test_dataloader, device):
+    if not os.path.exists(args.results_save_path):
+        os.makedirs(args.results_save_path)
+
     train_dataset = generate_purged_dataset(train_dataloader, bert_model, netS, device)
     test_dataset = generate_purged_dataset(test_dataloader, bert_model, netS, device)
 
-    dump_data(args.results_save_path + 'train-gen.pkl', train_dataset)
-    dump_data(args.results_save_path + 'test-gen.pkl', test_dataset)
+    dump_data(os.path.join(args.results_save_path, 'train-gen.pkl'), train_dataset)
+    dump_data(os.path.join(args.results_save_path, 'test-gen.pkl'), test_dataset)
 
 def main():
     args = get_parser().parse_args()
