@@ -1,6 +1,6 @@
 # Adversarial Scrubber (AdS)
 
-This repository presents the implementation of EMNLP 2021 paper: "__Adversarial Scrubbing of Demographic Information for Text Classification"__
+This repository presents the implementation of EMNLP 2021 paper: "__[Adversarial Scrubbing of Demographic Information for Text Classification](https://arxiv.org/abs/2109.08613)"__
 
 [Somnath Basu Roy Chowdhury](https://www.cs.unc.edu/~somnath/), [Sayan Ghosh](https://sgdgp.github.io/), [Yiyuan Li](https://nativeatom.github.io/), [Junier Oliva](https://cs.unc.edu/person/junier-oliva/), [Shashank Srivastava](https://www.ssriva.com/) and [Snigdha Chaturvedi](https://sites.google.com/site/snigdhac/).
 
@@ -60,8 +60,4 @@ cd src/
 python evaluate.py \
     --train_path results/wizard/train-gen.pkl \
     --test_path results/wizard/test-gen.pkl
-```
-
-## Citation
-```
 ```
