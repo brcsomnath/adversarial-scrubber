@@ -1,6 +1,6 @@
 # Adversarial Scrubber (AdS)
 
-This repository presents the implementation of EMNLP 2021 paper: "__[Adversarial Scrubbing of Demographic Information for Text Classification](https://arxiv.org/abs/2109.08613)"__
+This repository presents the implementation of EMNLP 2021 paper: "__[Adversarial Scrubbing of Demographic Information for Text Classification](https://aclanthology.org/2021.emnlp-main.43/)"__
 
 [Somnath Basu Roy Chowdhury](https://www.cs.unc.edu/~somnath/), [Sayan Ghosh](https://sgdgp.github.io/), [Yiyuan Li](https://nativeatom.github.io/), [Junier Oliva](https://cs.unc.edu/person/junier-oliva/), [Shashank Srivastava](https://www.ssriva.com/) and [Snigdha Chaturvedi](https://sites.google.com/site/snigdhac/).
 
@@ -60,4 +60,25 @@ cd src/
 python evaluate.py \
     --train_path results/wizard/train-gen.pkl \
     --test_path results/wizard/test-gen.pkl
+```
+
+## Citation
+```
+@inproceedings{basu-roy-chowdhury-etal-2021-adversarial,
+    title = "Adversarial Scrubbing of Demographic Information for Text Classification",
+    author = "Basu Roy Chowdhury, Somnath  and
+      Ghosh, Sayan  and
+      Li, Yiyuan  and
+      Oliva, Junier  and
+      Srivastava, Shashank  and
+      Chaturvedi, Snigdha",
+    booktitle = "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2021",
+    address = "Online and Punta Cana, Dominican Republic",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.emnlp-main.43",
+    doi = "10.18653/v1/2021.emnlp-main.43",
+    pages = "550--562",
+}
 ```

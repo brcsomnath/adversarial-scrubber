@@ -6,7 +6,7 @@ umap_learn==0.5.1
 matplotlib==3.3.2
 numpy==1.19.5
 Keras==2.4.3
-nltk==3.5
+nltk==3.6.4
 datasets==1.5.0
 scikit_learn==0.24.2
 umap==0.1.1
