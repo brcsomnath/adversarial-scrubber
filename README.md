@@ -29,7 +29,7 @@ Demo for the project is provided for Wizard dataset. <br>
 Run the following command to prepare the data in the format required in our project.
 ```
 cd src/
-python prepare_data.py --dataset wizard  --save_path data/wizard/ 
+python prepare_data.py --dataset wizard  --save_path ../data/wizard/ 
 ```
 
 ## Running AdS
@@ -44,8 +44,8 @@ python train.py \
 --max_len 32 \
 --embedding_size 768 \
 --device cuda:0 \
---model_save_path model/wizard/ \
---results_save_path results/wizard/ \
+--model_save_path ../model/wizard/ \
+--results_save_path ../results/wizard/ \
 --save_path data/wizard \
 --epochs 3 \
 --lambda_1 10 \
@@ -58,8 +58,7 @@ Evaluate the representations formed by the model by running the following comman
 ```
 cd src/
 python evaluate.py \
-    --train_path results/wizard/train-gen.pkl \
-    --test_path results/wizard/test-gen.pkl
+    --dataset wizard
 ```
 
 ## Citation

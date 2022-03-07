@@ -19,10 +19,13 @@ def get_config():
     parser = argparse.ArgumentParser()
     
     parser.add_argument(
-        "--train_path", type=str, default="results/wizard/train-gen.pkl"
+        "--dataset", type=str, default="wizard"
     )
     parser.add_argument(
-        "--test_path", type=str, default="results/wizard/test-gen.pkl"
+        "--train_path", type=str, default="../results/wizard/train-gen.pkl"
+    )
+    parser.add_argument(
+        "--test_path", type=str, default="../results/wizard/test-gen.pkl"
     )
     parser.add_argument(
         "--data_id", type=int, default=0
@@ -115,8 +118,11 @@ def main():
     args = parser.parse_args()
 
     set_seed(args)
+    
+    train_path = f"../results/{args.dataset}/train-gen.pkl"
+    test_path = f"../results/{args.dataset}/test-gen.pkl"
 
-    train, test = load_dump(args.train_path), load_dump(args.test_path)
+    train, test = load_dump(train_path), load_dump(test_path)
 
     f1, p, r = get_performance(args, train, test, args.y_id)
     print("Y Classification Performance: F1 - {} P - {} R - {}".format(f1, p, r))
